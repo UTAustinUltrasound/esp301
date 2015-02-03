@@ -15,9 +15,14 @@ try
     fopen(device);
 end
 
-command = strcat (num2str(motor), 'DH');
-fprintf(device, command)
+v = zeros(length(motor),1);
 
-v = str2double(query(device, strcat(num2str(motor), 'TP')));
+for ii = 1:length(motor);
+    command = strcat (num2str(motor(ii)), 'DH');
+    fprintf(device, command)
+    
+    v(ii) = str2double(query(device, strcat(num2str(motor(ii)), 'TP')));
+    
+end
 
 fclose(device);
